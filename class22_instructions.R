@@ -85,7 +85,7 @@ food_web <- read.csv("food_web.csv", header = T)[,-1]
 food_web_mat <- graph_from_data_frame(food_web) %>% as_adjacency_matrix() %>% as.matrix()
 food_web_net <- as.network(food_web_mat, directed = F, bipartite = F)
 
-is_predator <- ifelse(network::get.vertex.attribute(food_web_net, attrname = "vertex.names") %in% food_web[,1],
+is_predator <- ifelse(network::get.vertex.attribute(food_web_net, attrname = "vertex.names") %in% food_web[,2],
                       "yes", "no")
 food_web_net <- network::set.vertex.attribute(food_web_net, # the name of the network object
                                    "Mammal_predator", # the name we want to reference the variable by in that object
