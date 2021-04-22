@@ -78,6 +78,7 @@ plot(ba, vertex.size=6, vertex.label=NA)
 library("bipartite")
 library("intergraph")
 library("ggnetwork")
+library("network")
 
 # Read in a dataframe
 food_web <- read.csv("food_web.csv", header = T)[,-1]
@@ -91,7 +92,7 @@ food_web_net <- network::set.vertex.attribute(food_web_net, # the name of the ne
                                    is_predator # the value we are giving that variable
 )
 
-ggplot(n, aes(x = x, y = y, xend = xend, yend = yend)) +
+ggplot(food_web_net, aes(x = x, y = y, xend = xend, yend = yend)) +
   geom_edges(color = "black") +
   geom_nodelabel_repel(aes(label = vertex.names),
                        fontface = "bold", box.padding = unit(1, "lines")) +
